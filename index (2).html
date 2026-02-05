@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Immu ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-background {
+      background: linear-gradient(180deg, #ffafbd 0%, #ffc3a0 100%);
+    }
+    .bounce {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+  </style>
+</head>
+<body class="gradient-background overflow-hidden">
+  <audio id="bgMusic" loop>
+    <source src="https://www.myinstants.com/media/sounds/titanic-theme-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="flex items-center justify-center h-screen relative z-10">
+    <div class="flex flex-col items-center p-8 bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl text-center max-w-md mx-4 border border-white/20">
+      
+      <img id="imageDisplay" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDlvaWY4Y3AzNnJva3F6OTE0MGpwZ3h5ZjBzanoyZ29venFlNGFudCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6g8yTBznsdfJ4jctkM/giphy.gif" alt="Cute bear" class="rounded-2xl h-[250px] w-full object-cover mb-6 shadow-md" />
+      
+      <h2 id="valentineQuestion" class="text-3xl font-extrabold italic text-[#be185d]">Will you be my Valentine, immu ? ❤️</h2>
+      
+      <div class="flex gap-4 pt-[30px] items-center" id="responseButtons">
+        <button id="yesButton" class="bounce inline-flex items-center justify-center rounded-full text-[20px] font-bold bg-[#ff1e56] text-white px-8 py-3 shadow-lg hover:scale-110 transition-all duration-300">
+          Yes! 💖
+        </button>
+        <button id="noButton" class="inline-flex items-center justify-center rounded-full text-[18px] font-medium bg-white text-[#ff1e56] px-6 py-2 shadow-sm border border-pink-200">
+          No 😢
+        </button>
+      </div>
+    </div>
+  </div>
+
+<script type="module">
+    import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+    
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const imageDisplay = document.getElementById('imageDisplay');
+    const valentineQuestion = document.getElementById('valentineQuestion');
+    const responseButtons = document.getElementById('responseButtons');
+    const music = document.getElementById('bgMusic');
+  
+    let noClickCount = 0;
+    let yesSize = 20;
+
+    const images = [
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycXByZ3R3Z3R3Z3R3Z3R3Z3R3Z3R3Z3R3Z3R3Z3R3Z3R3ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif",
+      "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGozMW11aWg5dnNoeTRpdWRsam9tcXBoMzVldHkyNjN5d3YwYTJ1MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1KVaj5UcbHwrBMqI/giphy.gif",
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2hnaDFhNnA2ZmpibndmaHB2dm5zejlreG02MXUyN3phdWNpdmtqaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d2lcHJTG5Tscg/giphy.gif"
+    ];
+
+    const messages = ["No NOooooo", "Ek bar such lo, immuu?", "immu please...", "kya hoga mera :("];
+  
+    noButton.addEventListener('click', () => {
+      if (noClickCount < messages.length - 1) {
+        noClickCount++;
+        noButton.textContent = messages[noClickCount];
+        imageDisplay.src = images[noClickCount % images.length];
+        
+        yesSize += 35;
+        yesButton.style.fontSize = `${yesSize}px`;
+        yesButton.style.padding = `${yesSize/2}px ${yesSize}px`;
+      }
+    });
+  
+    yesButton.addEventListener('click', () => {
+      // 1. Updated to a very reliable, high-quality romantic bear hug GIF
+      imageDisplay.src = 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmtycWZvbGYxZmZhdjd6cncyZWhlYmR0azR1dHpwOGZvejU2cWhkaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5OqXb948EBkyUcnwHt/giphy.gif';
+      
+      // 2. Updated the text with a more romantic style
+      valentineQuestion.innerHTML = "Yayyy!! I love you Immu ! ❤️<br><span style='font-size: 1.5rem; display: block; margin-top: 10px; color: #ff1e56;'>You've made me the happiest person ever!</span>";
+      
+      // 3. Completely clear the buttons to make space for the message
+      responseButtons.innerHTML = ""; 
+      
+      // 4. Effects
+      confetti();
+      music.play();
+    });
+  </script>
+
+
+</html>
